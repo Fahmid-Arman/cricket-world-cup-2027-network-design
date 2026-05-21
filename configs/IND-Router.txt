@@ -1,0 +1,38 @@
+enable
+configure terminal
+hostname IND-Router
+no ip domain-lookup
+
+interface g0/0
+ description India LAN
+ ip address 12.36.0.1 255.255.254.0
+ no shutdown
+exit
+
+interface g0/1
+ description Link to BD-Router
+ ip address 12.36.5.130 255.255.255.252
+ no shutdown
+exit
+
+interface g0/2
+ description Link to SL-Router
+ ip address 12.36.5.133 255.255.255.252
+ no shutdown
+exit
+
+ip route 12.36.3.0 255.255.255.0 12.36.5.129
+ip route 12.36.5.144 255.255.255.248 12.36.5.134
+ip route 12.36.3.0 255.255.255.0 12.36.5.145 5
+ip route 12.36.2.0 255.255.255.0 12.36.5.134
+ip route 12.36.4.0 255.255.255.0 12.36.5.134
+ip route 12.36.5.0 255.255.255.128 12.36.5.134
+
+router rip
+ version 2
+ no auto-summary
+ network 12.0.0.0
+exit
+
+end
+write memory

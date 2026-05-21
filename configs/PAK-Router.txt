@@ -1,0 +1,32 @@
+enable
+configure terminal
+hostname PAK-Router
+no ip domain-lookup
+
+interface g0/0
+ description Pakistan LAN
+ ip address 12.36.2.1 255.255.255.0
+ ip helper-address 12.36.5.145
+ no shutdown
+exit
+
+interface g0/1
+ description Shared network with BD and SL
+ ip address 12.36.5.146 255.255.255.248
+ no shutdown
+exit
+
+interface g0/2
+ description Link to AFG-Router
+ ip address 12.36.5.137 255.255.255.252
+ no shutdown
+exit
+
+ip route 12.36.0.0 255.255.254.0 12.36.5.145
+ip route 12.36.3.0 255.255.255.0 12.36.5.145
+ip route 12.36.4.0 255.255.255.0 12.36.5.147
+ip route 12.36.5.128 255.255.255.252 12.36.5.145
+ip route 12.36.5.132 255.255.255.252 12.36.5.147
+
+end
+write memory
