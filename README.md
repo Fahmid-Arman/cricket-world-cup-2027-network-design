@@ -67,3 +67,11 @@ cat > .gitignore <<'EOF'
 .DS_Store
 *.log
 *.tmp
+
+## Status
+
+Completed and uploaded to GitHub.
+
+## Testing
+
+The network was tested using ping commands between routers, servers, and LAN devices to verify end-to-end connectivity.
